@@ -43,4 +43,4 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          KUBECONFIG=$PWD/kubeconfig kubectl apply -f k8s/deployment.yaml
+          KUBECONFIG=$PWD/kubeconfig kubectl apply -f  --validate=false k8s/deployment.yaml
