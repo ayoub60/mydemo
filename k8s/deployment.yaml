@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydemo
+  namespace: mycompany
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mydemo
+  template:
+    metadata:
+      labels:
+        app: mydemo
+    spec:
+      containers:
+        - name: mydemo
+          image: ayoub6000/mydemo:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mydemo
+  namespace: mycompany
+spec:
+  selector:
+    app: mydemo
+  ports:
+    - port: 80
+      targetPort: 8080
+
