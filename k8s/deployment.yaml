@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mydemo
-          image: ayoub6000/mydemo:0.0.2-SNAPSHOT
+          image: ayoub6000/mydemo:latest
           ports:
             - containerPort: 8080
 ---
