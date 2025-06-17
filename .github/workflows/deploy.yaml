@@ -34,13 +34,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/mydemo:latest .
+          docker buildx build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/mydemo:latest .
           docker push ${{ secrets.DOCKER_USERNAME }}/mydemo:latest
-
-      - name: Setup kubeconfig
-        run: |
-          echo "${{ secrets.KUBECONFIG_B64 }}" | base64 -d > kubeconfig
-
-      - name: Deploy to Kubernetes
-        run: |
-          KUBECONFIG=$PWD/kubeconfig kubectl apply --validate=false -f k8s/deployment.yaml
